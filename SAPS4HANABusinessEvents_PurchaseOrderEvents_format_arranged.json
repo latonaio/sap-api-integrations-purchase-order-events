@@ -1,0 +1,220 @@
+{"openapi":"3.0.0","info":{
+  "title":"Purchase Order",
+  "version":"1.0",
+  "description":"A purchase order is a document issued by a purchaser to a supplier indicating types, quantities, and agreed prices for products or services. The following events are available for purchase order: \n - Purchase order changed \n - Purchase order created \n - Purchase order item deleted \n - Purchase order item blocked \n - Purchase order item unblocked"},
+  "externalDocs":{
+    "description":"Business Documentation",
+    "url":"https://help.sap.com/viewer/91af7f8d3acd47da90d33aaacfcd0d59/2021.000/en-US/eeab037f56e24beeb5d729de18055a65.html"},
+    "components":{
+      "schemas":{
+        "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemDeleted.v1":{
+          "type":"object",
+          "properties":{
+            "PurchaseOrder":{"type":"string"},
+            "PurchaseOrderItem":{"type":"string"}
+            }
+          },
+        "sap.s4.beh.purchaseorder.v1.PurchaseOrder.Changed.v1":{
+          "type":"object",
+          "properties":{
+            "PurchaseOrder":{"type":"string"}
+            }
+          },
+        "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemBlocked.v1":{
+          "type":"object",
+          "properties":{
+            "PurchaseOrder":{"type":"string"},
+            "PurchaseOrderItem":{"type":"string"}
+            }
+          },
+        "sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemUnblocked.v1":{
+          "type":"object",
+          "properties":{
+            "PurchaseOrder":{"type":"string"},
+            "PurchaseOrderItem":{"type":"string"}
+            }
+          },
+        "sap.s4.beh.purchaseorder.v1.PurchaseOrder.Created.v1":{
+          "type":"object",
+          "properties":{
+            "PurchaseOrder":{"type":"string"}
+            }
+          },
+        "CloudContext":{
+          "title":"Schema for the CloudEvents context fields.",
+          "description":"This is a schema specification for the context fields as per CloudEvent standards.",
+          "type":"object",
+          "properties":{
+            "specversion":{
+              "description":"The version of the CloudEvents specification which the event uses. This enables the interpretation of the context.",
+              "type":"string"},
+              "type":{
+                "description":"Type of occurrence which has happened. Often this property is used for routing, observability, policy enforcement, etc.",
+                "type":"string",
+                "minLength":1},
+                "source":{
+                  "description":"This describes the event producer.",
+                  "type":"string",
+                  "format":"uri-reference"},
+                  "subject":{
+                    "description":"The subject of the event in the context of the event producer (identified by source).",
+                    "type":"string",
+                    "minLength":1},
+                    "id":{
+                      "description":"ID of the event.",
+                      "type":"string","minLength":1},
+                      "time":{
+                        "description":"Timestamp of when the occurrence happened. Must adhere to RFC 3339.",
+                        "type":"string",
+                        "format":"date-time"},
+                        "datacontenttype":{
+                          "description":"Describe the data encoding format",
+                          "type":"string"}
+                          },
+              "required":["id","specversion","source","type"]
+            }
+          }
+        },
+      "paths":{
+        "/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemDeleted.v1":{
+          "post":{
+            "tags":["Item Deleted"],
+            "x-payload":"",
+            "description":"This event is triggered when a purchase order item is marked as deleted",
+            "summary":"Purchase Order Item Deleted",
+            "requestBody":{
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "allOf":[
+                      {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                      {"type":"object","properties":{
+                        "data":{
+                          "description":"Data Fields",
+                          "$ref":"#/components/schemas/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemDeleted.v1"}
+                          }
+                      }
+                    ]
+                  }
+                }
+               }
+              },
+            "responses":{
+              "default":{"description":"Successful"}
+              }
+            }
+          },
+        "/sap.s4.beh.purchaseorder.v1.PurchaseOrder.Changed.v1":{
+          "post":{
+            "tags":["Changed"],
+            "x-payload":"",
+            "description":"This event is raised when a purchase order instance has changed.",
+            "summary":"Purchase Order Changed",
+            "requestBody":{
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "allOf":[
+                      {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                      {"type":"object","properties":{
+                        "data":{
+                          "description":"Data Fields",
+                          "$ref":"#/components/schemas/sap.s4.beh.purchaseorder.v1.PurchaseOrder.Changed.v1"}
+                          }
+                      }
+                    ]
+                  }
+                }
+                }
+                },
+            "responses":{
+              "default":{"description":"Successful"}
+            }
+          }
+        },
+      "/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemBlocked.v1":{
+        "post":{
+          "tags":["Item Blocked"],
+          "x-payload":"",
+          "description":"This event is raised when a purchase order item is blocked.",
+          "summary":"Purchase Order Item Blocked",
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "allOf":[
+                    {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                    {"type":"object","properties":{
+                      "data":{
+                        "description":"Data Fields",
+                        "$ref":"#/components/schemas/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemBlocked.v1"}
+                        }
+                    }
+                  ]
+                }
+              }
+              }
+              },
+          "responses":{
+            "default":{"description":"Successful"}
+            }
+          }
+        },
+      "/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemUnblocked.v1":{
+        "post":{
+          "tags":["Item Unblocked"],
+          "x-payload":"",
+          "description":"This event is triggered when a purchase order item is unblocked.",
+          "summary":"Purchase Order Item Unblocked",
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "allOf":[
+                    {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                    {"type":"object","properties":{
+                      "data":{
+                        "description":"Data Fields",
+                        "$ref":"#/components/schemas/sap.s4.beh.purchaseorder.v1.PurchaseOrder.ItemUnblocked.v1"}
+                        }
+                    }
+                  ]
+                }
+              }
+            }
+            },
+          "responses":{
+            "default":{"description":"Successful"}
+            }
+          }
+        },
+      "/sap.s4.beh.purchaseorder.v1.PurchaseOrder.Created.v1":{
+        "post":{
+          "tags":["Created"],
+          "x-payload":"",
+          "description":"This event is raised when a purchase order instance has been created.",
+          "summary":"Purchase Order Created",
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "allOf":[
+                    {"type":"object","$ref":"#/components/schemas/CloudContext"},
+                    {"type":"object","properties":{
+                      "data":{
+                        "description":"Data Fields",
+                        "$ref":"#/components/schemas/sap.s4.beh.purchaseorder.v1.PurchaseOrder.Created.v1"}
+                        }
+                    }
+                  ]
+                  }
+                 }
+                }
+              },
+            "responses":{
+              "default":{"description":"Successful"}
+            }
+          }
+        }
+      }
+}
